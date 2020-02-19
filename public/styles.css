@@ -46,3 +46,36 @@ body {
     background-color: #222;
 }
 
+@media only screen and (max-device-width: 480px) {
+    body {
+        font-size: 3.5em;
+        background-color: #fff;
+        color: #222;
+    }
+    .nav {
+        display: none;
+    }
+    .garage .button {
+        background-color: #4caf50;
+        color: #222;
+        box-shadow: 0.0em 0.3em 0.5em #777;
+        border-radius: 0.25em;
+        padding: 1em;
+    }
+    .garage .button:hover {
+        
+    }
+    .garage .button:disabled {
+        background-color: #fff;
+    }
+    .card {
+        box-shadow: 0.0em 0.1em 0.5em #bbb;
+        border-color: #bbb;
+    }
+    .card div {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
