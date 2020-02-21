@@ -13,7 +13,8 @@ let setup = {
     PORT: process.env.PORT || 80,
     views: path.join(__dirname, 'public/views'),
     components: path.join(__dirname, 'public/components'),
-    public: path.join(__dirname, 'public')
+    public: path.join(__dirname, 'public'),
+    images: '/mnt/zbox/pi/images'
 }
 console.log(setup)
 console.log(config)
@@ -34,11 +35,14 @@ app.use('/', index({
     public: setup.public
 }), errHandler)
 app.use('/control', control({
-    command: config.command
+    command: config.command,
+    image: config.image,
+    delete: config.delete
 }), errHandler)
 
 app.use(express.static(setup.components))
 app.use(express.static(setup.public))
+app.use(express.static(setup.images))
 
 server.listen(setup.PORT, '0.0.0.0', () => {
     console.log(`server started on port: ${setup.PORT}`)

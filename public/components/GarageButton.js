@@ -6,6 +6,8 @@ export default class GarageButton extends BaseComponent {
 
         this.opts = opts
 
+        this.cbs = []
+
         this.root.onclick = async (e) => {
             e.target.disabled = true
             try{
@@ -22,6 +24,9 @@ export default class GarageButton extends BaseComponent {
             }catch(e) {
                 alert(JSON.stringify(e, null, 2))
             }
+            for(let f of this.cbs) {
+                f(this)
+            }
             e.target.disabled = false
 
         }
@@ -30,5 +35,8 @@ export default class GarageButton extends BaseComponent {
     }
     show() {
         this.root.textContent = `${this.opts.payload.message} (${this.opts.payload.pin})`
+    }
+    addClickCb(f) {
+        this.cbs.push(f)
     }
 }

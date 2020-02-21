@@ -19,5 +19,17 @@ module.exports = (opts={}) => {
         })
     })
 
+    router.get('/image', (req, res, next) => {
+        let d = Date.now()
+        let run = execSync(`${opts.delete}`)
+        run = execSync(`${opts.image}${d}.jpg`)
+        let e = Date.now()
+        res.send({
+            status: 200,
+            message: `${d}.jpg`,
+            time: e-d
+        })
+    })
+
     return router
 }
