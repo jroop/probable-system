@@ -30,4 +30,25 @@ window.onload = async () => {
         post: 'control/garage',
         payload: config['button-0']
     })
+    
+    let img = document.getElementsByClassName('image-0')[0]
+    let info = document.getElementsByClassName('info')[0]
+
+    const loader = async (img) => {
+        let e, s = Date.now()
+        img.src = 'loading.gif'
+        let res = await fetch('control/image')
+        res = await res.json()
+        console.log(res)
+        img.src = `${res.message}`
+        e = Date.now()
+        info.textContent = `${res.message}, ${e-s}ms`
+
+    }
+
+    img.onclick = async (e) => {
+        await loader(e.target)
+    }
+    await loader(img)
+
 }
