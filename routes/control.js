@@ -1,4 +1,4 @@
-const {exec} = requires('child_process')
+const {exec} = require('child_process')
 
 const promExec = (command) => {
     return new Promise((resolve, reject) => {
